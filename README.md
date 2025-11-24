@@ -42,7 +42,7 @@ _Make sure gcc is installed._
 
 Compile assembler: gcc assembler.c -o assembler
 
-Run Programs: ./assembler yourProgram.a
+Assemble programs to executable: ./assembler yourProgram.a
 
 ## **[Interpreter](https://github.com/BenjaminFisher1/Lcc-Assembler-Interpreter-and-Linker/blob/main/interpreter.c):**
 This program is a small LCC interpreter.
