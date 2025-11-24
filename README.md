@@ -4,7 +4,9 @@ Based off of program shells provided in the [textbook](https://a.co/d/bN9Kix4) "
 
 ### Workflow Overview:
 1.) Compile assembly code using assembler
+
 2.) OPTIONAL: Link multiple modules using linker
+
 3.) Execute program using interpreter
 
 ## **[Assembler](https://github.com/BenjaminFisher1/Lcc-Assembler-Interpreter-and-Linker/blob/main/assembler.c):**
