@@ -2,6 +2,11 @@
 Three projects dealing with LCC assembly, translating assembly language to machine code, encode assembly source files and execute them, and link multiple object files into a single executable file. 
 Based off of program shells provided in the [textbook](https://a.co/d/bN9Kix4) "C and C++ Under the Hood: 2nd Edition" by Anthony J. Dos Reis
 
+### Workflow Overview:
+1.) Compile assembly code using assembler
+2.) OPTIONAL: Link multiple modules using linker
+3.) Execute program using interpreter
+
 ## **[Assembler](https://github.com/BenjaminFisher1/Lcc-Assembler-Interpreter-and-Linker/blob/main/assembler.c):**
 This program is a two-pass assembler for the LCC instruction set.
 
@@ -89,6 +94,6 @@ This program is a simple two-pass linker for object modules.
 ### Usage: 
 _Make sure gcc is installed._
 
-gcc linker.c -o linker
+gcc linker.c -c linker
 
 linker moduleName1 moduleName2 etc..
