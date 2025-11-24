@@ -55,4 +55,7 @@ This program is a simple two-pass linker for object modules.
 - Writes a single executable file "link.e" in the same object file format (with header entries and machine code).
 - Performs basic error checking for undefined references and multiple definitions.
 
-#### Usage: l <obj module name1> <obj module name2> ...
+#### Usage: 
+_Make sure gcc is installed._
+gcc linker.c -o linker
+linker <obj module name1> <obj module name2> ...
