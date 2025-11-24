@@ -1,101 +1,71 @@
 # Lcc-Assembler-Interpreter-and-Linker
-Three projects dealing with LCC assembly, translating assembly language to machine code, encode assembly source files and execute them, and link multiple object files into a single executable file. 
-Based off of program shells provided in the [textbook](https://a.co/d/bN9Kix4) "C and C++ Under the Hood: 2nd Edition" by Anthony J. Dos Reis
+## Overview
 
-### Workflow Overview:
-1.) Compile assembly code using assembler
+Three projects dealing with LCC assembly: translating assembly language to machine code, encoding assembly source files and executing them, and linking multiple object files into a single executable file.
 
-2.) OPTIONAL: Link multiple modules using linker
+Based on program shells provided in the [textbook](https://a.co/d/bN9Kix4) *"C and C++ Under the Hood: 2nd Edition"* by Anthony J. Dos Reis.
 
-3.) Execute program using interpreter
+### Workflow
 
-## **[Assembler](https://github.com/BenjaminFisher1/Lcc-Assembler-Interpreter-and-Linker/blob/main/assembler.c):**
-This program is a two-pass assembler for the LCC instruction set.
+1. Compile assembly code using **Assembler**
+2. *(Optional)* Link multiple modules using **Linker**
+3. Execute program using **Interpreter**
 
-- Pass 1: reads the input assembly file, builds a symbol table (labels -> addresses),
-  and computes location counters (handles .zero to advance loc_ctr).
-  
-- Pass 2: re-parses the file, translates mnemonics and operands into 16-bit
-  machine words (writes binary words to an output file with ".e" extension).
+---
 
-Supported mnemonics include:
-  - br*/branch variants
-  - add
-  - and
-  - not
-  - ld
-  - st
-  - ldr
-  - str
-  - bl
-  - blr
-  - jmp
-  - ret
-  - lea
-  - halt
-  - nl
-  - dout
-  - .word
-  - .zero
-  
-Utility functions:
-- **mystrcmpi/mystrncmpi:** case-insensitive string compares.
-- **isreg/getreg:** detect and parse register operands (r0..r7).
-- **getadd:** lookup label addresses in the symbol table.
+## [Assembler](https://github.com/BenjaminFisher1/Lcc-Assembler-Interpreter-and-Linker/blob/main/assembler.c)
 
-Errors are reported with line number and the original source line.
-### Usage:
-_Make sure gcc is installed._
+Two-pass assembler for the LCC instruction set.
 
-Compile assembler: gcc assembler.c -o assembler
+**Pass 1:** Reads input assembly file, builds symbol table (labels → addresses), computes location counters.
 
-Assemble programs to executable: ./assembler yourProgram.a
+**Pass 2:** Re-parses file, translates mnemonics and operands into 16-bit machine words (outputs ".e" extension).
 
-## **[Interpreter](https://github.com/BenjaminFisher1/Lcc-Assembler-Interpreter-and-Linker/blob/main/interpreter.c):**
-This program is a small LCC interpreter.
-- Opens a binary lcc file, checks for the two-byte header 'o' 'C', and loads up to 65536 16-bit words into mem[].
-- Uses registers r[0..7] and a program counter pc. r[7] is used as the link register.
-- Runs a fetch-decode-execute loop: fetches ir = mem[pc++], extracts instruction fields (opcode, pcoffset9, pcoffset11, imm5, offset6, eopcode, trapvec, register fields, and bit flags).
-  
-- Decodes opcode with a switch and executes implemented instructions:
-  -   branches (case 0)
-  -   add (1)
-  -   ld (2)
-  -   st (3)
-  -   jsr/bl/blr (4)
-  -   and (5)
-  -   ldr/str (6/7)
-  -   not (9)
-  -   jmp/ret (12)
-  -   lea (14)
-  -   trap (15) which handles halt (exit)
-  -   nl (newline)
-  -   dout (print register value).
+**Supported Mnemonics:** `br*` · `add` · `and` · `not` · `ld` · `st` · `ldr` · `str` · `bl` · `blr` · `jmp` · `ret` · `lea` · `halt` · `nl` · `dout` · `.word` · `.zero`
 
-  
-- Maintains condition flags n (Negative) and z (Zero) via setnz(), and carry/overflow via setcv() called by arithmetic operations.
-- Memory accesses are direct indexing into mem[] or via base+offset addressing for ldr/str.
-- The interpreter loops until a trap/halt causes exit or a file error occurs.
+**Utilities:** `mystrcmpi/mystrncmpi` (case-insensitive compare) · `isreg/getreg` (register parsing) · `getadd` (symbol lookup)
 
-### Usage:
-_Ensure gcc is installed_
+Errors include line number and source context.
 
-Compile interpreter: gcc interpreter.c -o interpreter
+### Compile & Use
+```bash
+gcc assembler.c -o assembler
+./assembler yourProgram.a
+```
 
-Run Programs: ./interpreter programName.e
+---
 
-## **[Linker](https://github.com/BenjaminFisher1/Lcc-Assembler-Interpreter-and-Linker/blob/main/linker.c):**
-This program is a simple two-pass linker for object modules.
-- Reads one or more object (.o) modules passed on the command line, parses their headers (entries: S start, G global defs, E external refs, e external refs with different bit fields, V relocatable values, A absolute relocations)
-- Collects and adjusts addresses
-- Resolves external references against global definitions
-- Applies relocations
-- Writes a single executable file "link.e" in the same object file format (with header entries and machine code).
-- Performs basic error checking for undefined references and multiple definitions.
+## [Interpreter](https://github.com/BenjaminFisher1/Lcc-Assembler-Interpreter-and-Linker/blob/main/interpreter.c)
 
-### Usage: 
-_Make sure gcc is installed._
+LCC virtual machine interpreter executing binary object files.
 
-gcc linker.c -c linker
+**Core:** Memory (65536 16-bit words), registers r0–r7 (r7 = link register), program counter.
 
-linker moduleName1 moduleName2 etc..
+**Execution:** Fetch-decode-execute loop with instruction decoding via opcode switch.
+
+**Instructions:** Branches · Arithmetic (add, and, not) · Memory (ld, st, ldr, str) · Control (jsr, jmp, ret, lea) · I/O (nl, dout) · Halt
+
+**Features:** Condition flags (n, z), carry/overflow tracking, base+offset addressing.
+
+### Compile & Use
+```bash
+gcc interpreter.c -o interpreter
+./interpreter programName.e
+```
+
+---
+
+## [Linker](https://github.com/BenjaminFisher1/Lcc-Assembler-Interpreter-and-Linker/blob/main/linker.c)
+
+Two-pass linker combining multiple object modules into executables.
+
+**Operations:** Parse headers (S, G, E, e, V, A entries) · Collect and adjust addresses · Resolve external references · Apply relocations · Write "link.e"
+
+**Error Checking:** Undefined references, duplicate definitions.
+
+### Compile & Use
+```bash
+gcc linker.c -o linker
+./linker moduleName1 moduleName2 ...
+```
+
