@@ -12,7 +12,7 @@ This program is a two-pass assembler for the LCC instruction set.
   machine words (writes binary words to an output file with ".e" extension).
 
 Supported mnemonics include:
-- br*/branch variants
+  - br*/branch variants
   - add
   - and
   - not
@@ -51,19 +51,19 @@ This program is a small LCC interpreter.
 - Runs a fetch-decode-execute loop: fetches ir = mem[pc++], extracts instruction fields (opcode, pcoffset9, pcoffset11, imm5, offset6, eopcode, trapvec, register fields, and bit flags).
   
 - Decodes opcode with a switch and executes implemented instructions:
--   branches (case 0)
--   add (1)
--   ld (2)
--   st (3)
--   jsr/bl/blr (4)
--   and (5)
--   ldr/str (6/7)
--   not (9)
--   jmp/ret (12)
--   lea (14)
--   trap (15) which handles halt (exit)
--   nl (newline)
--   dout (print register value).
+  -   branches (case 0)
+  -   add (1)
+  -   ld (2)
+  -   st (3)
+  -   jsr/bl/blr (4)
+  -   and (5)
+  -   ldr/str (6/7)
+  -   not (9)
+  -   jmp/ret (12)
+  -   lea (14)
+  -   trap (15) which handles halt (exit)
+  -   nl (newline)
+  -   dout (print register value).
 
   
 - Maintains condition flags n (Negative) and z (Zero) via setnz(), and carry/overflow via setcv() called by arithmetic operations.
