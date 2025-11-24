@@ -13,23 +13,23 @@ This program is a two-pass assembler for the LCC instruction set.
 
 Supported mnemonics include:
 - br*/branch variants
-- add
-- and
-- not
-- ld
-- st
-- ldr
-- str
-- bl
-- blr
-- jmp
-- ret
-- lea
-- halt
-- nl
-- dout
-- .word
-- .zero
+  - add
+  - and
+  - not
+  - ld
+  - st
+  - ldr
+  - str
+  - bl
+  - blr
+  - jmp
+  - ret
+  - lea
+  - halt
+  - nl
+  - dout
+  - .word
+  - .zero
   
 Utility functions:
 - **mystrcmpi/mystrncmpi:** case-insensitive string compares.
