@@ -72,6 +72,7 @@ This program is a small LCC interpreter.
 
 ### Usage:
 _Ensure gcc is installed_
+
 Compile interpreter: gcc interpreter.c -o interpreter
 
 Run Programs: ./interpreter programName.e
