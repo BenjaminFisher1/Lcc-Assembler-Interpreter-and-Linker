@@ -37,7 +37,7 @@ Utility functions:
 - **getadd:** lookup label addresses in the symbol table.
 
 Errors are reported with line number and the original source line.
-#### Usage:
+### Usage:
 _Make sure gcc is installed._
 
 Compile assembler: gcc assembler.c -o assembler
@@ -70,6 +70,12 @@ This program is a small LCC interpreter.
 - Memory accesses are direct indexing into mem[] or via base+offset addressing for ldr/str.
 - The interpreter loops until a trap/halt causes exit or a file error occurs.
 
+### Usage:
+_Ensure gcc is installed_
+Compile interpreter: gcc interpreter.c -o interpreter
+
+Run Programs: ./interpreter programName.e
+
 ## **[Linker](https://github.com/BenjaminFisher1/Lcc-Assembler-Interpreter-and-Linker/blob/main/linker.c):**
 This program is a simple two-pass linker for object modules.
 - Reads one or more object (.o) modules passed on the command line, parses their headers (entries: S start, G global defs, E external refs, e external refs with different bit fields, V relocatable values, A absolute relocations)
@@ -79,7 +85,7 @@ This program is a simple two-pass linker for object modules.
 - Writes a single executable file "link.e" in the same object file format (with header entries and machine code).
 - Performs basic error checking for undefined references and multiple definitions.
 
-#### Usage: 
+### Usage: 
 _Make sure gcc is installed._
 
 gcc linker.c -o linker
