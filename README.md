@@ -1,6 +1,6 @@
 # Lcc-Assembler-Interpreter-and-Linker
 Three projects dealing with LCC assembly, translating assembly language to machine code, encode assembly source files to executables, and link multiple object files into a single executable file. 
-Based off of program shells provided in the [textbook](https://a.co/d/bN9Kix4)
+Based off of program shells provided in the [textbook](https://a.co/d/bN9Kix4) "C and C++ Under the Hood: 2nd Edition" by Anthony J. Dos Reis
 
 ## **Assembler:**
 
