@@ -31,11 +31,11 @@ Supported mnemonics/directives include:
 Utility functions:
 - **mystrcmpi/mystrncmpi:** case-insensitive string compares.
 - **isreg/getreg:** detect and parse register operands (r0..r7).
-- ** getadd:** lookup label addresses in the symbol table.
+- **getadd:** lookup label addresses in the symbol table.
 
 Errors are reported with line number and the original source line.
 #### Usage:
-_Make sure gcc is installed. _
+_Make sure gcc is installed._
 
 Compile assembler: gcc assembler.c -o assembler
 
