@@ -60,4 +60,4 @@ _Make sure gcc is installed._
 
 gcc linker.c -o linker
 
-linker <obj module name1> <obj module name2> ...
+linker moduleName1 moduleName2 etc..
