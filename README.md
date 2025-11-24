@@ -4,10 +4,13 @@ Based off of program shells provided in the [textbook](https://a.co/d/bN9Kix4) "
 
 ## **[Assembler](https://github.com/BenjaminFisher1/Lcc-Assembler-Interpreter-and-Linker/blob/main/assembler.c):**
 This program is a two-pass assembler for the LCC instruction set.
+
 - Pass 1: reads the input assembly file, builds a symbol table (labels -> addresses),
   and computes location counters (handles .zero to advance loc_ctr).
+  
 - Pass 2: re-parses the file, translates mnemonics and operands into 16-bit
   machine words (writes binary words to an output file with ".e" extension).
+
 Supported mnemonics/directives include:
 - br*/branch variants
 - add
