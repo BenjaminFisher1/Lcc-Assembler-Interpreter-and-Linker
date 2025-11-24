@@ -11,7 +11,7 @@ This program is a two-pass assembler for the LCC instruction set.
 - Pass 2: re-parses the file, translates mnemonics and operands into 16-bit
   machine words (writes binary words to an output file with ".e" extension).
 
-Supported mnemonics/directives include:
+Supported mnemonics include:
 - br*/branch variants
 - add
 - and
