@@ -57,5 +57,7 @@ This program is a simple two-pass linker for object modules.
 
 #### Usage: 
 _Make sure gcc is installed._
+
 gcc linker.c -o linker
+
 linker <obj module name1> <obj module name2> ...
